@@ -1,0 +1,263 @@
+@import "./mixin/fonts";
+
+@include font-face('KaiseiOpti', '../fonts/KaiseiOpti-Regular.ttf', null, null, ttf);
+
+$headerHeight: 100px;
+
+$pudding: #fffacd;
+$pudding_shadow_color: #834a24;
+$pudding_shadow: 0 4px 0 $pudding_shadow_color;
+
+$pudding_outer: #fffacd;
+$puddingSource: #bd7e53;
+
+$rotateDeg: 8deg;
+$listHoverScale: scale(1.1, 1.1);
+
+body {
+    padding-top: $headerHeight;
+    background-color: $pudding_outer;
+    font-family: "KaiseiOpti";
+}
+
+header {
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 0 40px;
+    width: 100%;
+    height: $headerHeight;
+    background: $puddingSource;
+    display: flex;
+    .header-l {
+        width: 50%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        // background-color: #DDD;
+        img {
+            height: 35px;
+        }
+        h1#siteTitle {
+            font-size: 35px;
+            font-weight: bold;
+            color: $pudding;
+            text-shadow: $pudding_shadow;
+        }
+    }
+    .header-r {
+        width: 50%;
+        height: 100%;
+        // background-color: #666;
+        ul {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            // justify-content: space-between;
+            justify-content: flex-end;
+            align-items: center;
+            // background-color: red;
+            li {
+                margin-left: 100px;
+                font-size: 24px;
+                // font-weight: bold;
+                color: $pudding;
+                text-shadow: $pudding_shadow;
+                cursor: pointer;
+                transition: all .1s ease;
+                &:hover {
+                    // color: $pudding_hover;
+                    font-weight: bold;
+                    animation: purupuru .8s ease infinite;
+                    @keyframes purupuru {
+                        0% {
+                            transform: rotate($rotateDeg) $listHoverScale;
+                        }
+                        25% {
+                            transform: rotate(-$rotateDeg) $listHoverScale;
+                        }
+                        50% {
+                            transform: rotate($rotateDeg) $listHoverScale;
+                        }
+                        75% {
+                            transform: rotate(-$rotateDeg) $listHoverScale;
+                        }
+                        100% {
+                            transform: rotate($rotateDeg) $listHoverScale;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+main {
+    margin: 0 auto;
+    width: 75%;
+    background-color: $pudding;
+    #mainvisual {
+        position: relative;
+        width: 100%;
+        height: calc(100vh - $headerHeight);
+        overflow: hidden;
+        img {
+            width: 100%;
+            height: auto;
+        }
+        p {
+            position: absolute;
+            top: 30px;
+            right: 100px;
+            font-size: 100px;
+            color: $pudding;
+            text-shadow: $pudding_shadow;
+        }
+    }
+
+    .sections {
+        padding-top: 60px;
+        width: 100%;
+        color: $pudding_shadow_color;
+        h2 {
+            margin-bottom: 20px;
+            font-size: 30px;
+            &::before {
+                content: "◆";
+            }
+        }
+        .section-content {
+            // padding: 20px;
+            width: 100%;
+            // background-color: #CCC;
+        }
+    }
+
+    .pudding-top {
+        width: 100%;
+        height: 30px;
+        background-color: $puddingSource;
+        border-radius: 16px 16px 0 0;
+    }
+
+    .pudding-body {
+        border: 2px solid $puddingSource;
+        border-top: none;
+        border-radius: 0 0 16px 16px;
+    }
+
+    .flex-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    #profile {
+        .profile-list {
+            padding: 30px 30px 0 30px;
+            li {
+                margin-bottom: 30px;
+                font-size: 25px;
+                p {
+                    line-height: 40px;
+                    .list-title {
+                        line-height: 55px;
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+    }
+    
+    #history {
+        .pudding-body {
+            p {
+                padding: 30px;
+                font-size: 25px;
+                line-height: 55px;
+            }
+        }
+    }
+
+    #works {
+        .flex-container {
+            justify-content: space-between;
+            // background-color: #DDD;
+            &::before {
+                content: "";
+                display: block;
+                width: 22%;
+                order: 1;
+            }
+            &::after {
+                content: "";
+                display: block;
+                width: 22%;
+            }
+            .flex-item {
+                margin-bottom: 40px;
+                width: 22%;
+                height: 350px;
+                cursor: pointer;
+                // background-color: red;
+                &:hover {
+                    .pudding-body {
+                        background-color: #fff6a9;
+                    }
+                }
+                .pudding-top {
+                    height: 24px;
+                }
+                .pudding-body {
+                    padding: 20px 0;
+                    height: calc(100% - 20px);
+                    transition: all .1s ease;
+                    display: flex;
+                    flex-direction: column;
+                    // justify-content: space-between;
+                    align-items: center;
+                    .work-img {
+                        margin-bottom: 20px;
+                        width: 90%;
+                        height: 50%;
+                        overflow: hidden;
+                        background-color: $pudding;
+                        img {
+                            width: 100%;
+                        }
+                    }
+                    .work-title {
+                        width: 80%;
+                        font-size: 24px;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+    
+    #contact {
+        .pudding-body {
+            p {
+                padding: 30px;
+                font-size: 25px;
+                line-height: 55px;
+            }
+        }
+    }
+}
+
+footer {
+    margin-top: 60px;
+    width: 100%;
+    height: $headerHeight;
+    background-color: $puddingSource;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    #copyright {
+        font-size: 18px;
+        color: $pudding;
+        text-shadow: $pudding_shadow;
+    }
+}

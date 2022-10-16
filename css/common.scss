@@ -3,6 +3,7 @@
 @include font-face('KaiseiOpti', '../fonts/KaiseiOpti-Regular.ttf', null, null, ttf);
 
 $headerHeight: 100px;
+$headerHeight_sp: 70px;
 
 $pudding: #fffacd;
 $pudding_shadow_color: #834a24;
@@ -13,6 +14,29 @@ $puddingSource: #bd7e53;
 
 $rotateDeg: 8deg;
 $listHoverScale: scale(1.1, 1.1);
+
+// ブレイクポイントを指定
+$pc: 1420px;
+$tab: 970px;
+$sp: 740px;
+
+@mixin pc {
+  @media screen and (max-width: ($pc)) {
+    @content;
+  }
+}
+
+@mixin tab {
+  @media screen and (max-width: ($tab)) {
+    @content;
+  }
+}
+
+@mixin sp {
+  @media screen and (max-width: ($sp)) {
+    @content;
+  }
+}
 
 @keyframes purupuru {
     0% {
@@ -36,6 +60,9 @@ body {
     padding-top: $headerHeight;
     background-color: $pudding_outer;
     font-family: "KaiseiOpti";
+    @include sp {
+        padding-top: $headerHeight_sp;
+    }
 }
 
 header {
@@ -48,12 +75,19 @@ header {
     height: $headerHeight;
     background: $puddingSource;
     display: flex;
+    @include sp {
+        padding: 0 20px;
+        height: $headerHeight_sp;
+    }
     .header-l {
-        width: 50%;
+        width: 40%;
         height: 100%;
         display: flex;
         align-items: center;
         // background-color: #DDD;
+        @include tab {
+            width: 80%;
+        }
         img {
             height: 35px;
         }
@@ -62,12 +96,21 @@ header {
             font-weight: bold;
             color: $pudding;
             text-shadow: $pudding_shadow;
+            @include pc {
+                font-size: 28px;
+            }
+            @include sp {
+                font-size: 21px;
+            }
         }
     }
     .header-r {
-        width: 50%;
+        width: 60%;
         height: 100%;
         // background-color: #666;
+        @include tab {
+            width: 20%;
+        }
         ul {
             width: 100%;
             height: 100%;
@@ -76,6 +119,9 @@ header {
             justify-content: flex-end;
             align-items: center;
             // background-color: red;
+            @include tab {
+                display: none;
+            }
             li {
                 margin-left: 100px;
                 font-size: 24px;
@@ -89,6 +135,10 @@ header {
                     font-weight: bold;
                     animation: purupuru .8s ease infinite;
                 }
+                @include pc {
+                    margin-left: 70px;
+                    font-size: 22px;
+                }
             }
         }
     }
@@ -96,12 +146,16 @@ header {
 
 main {
     margin: 0 auto;
-    width: 75%;
+    // width: 75%;
+    width: 1420px;
     background-color: $pudding;
+    @include pc {
+        width: 100%;
+    }
     #mainvisual {
         position: relative;
         width: 100%;
-        height: calc(100vh - $headerHeight);
+        // height: calc(100vh - $headerHeight);
         overflow: hidden;
         img {
             width: 100%;
@@ -114,18 +168,35 @@ main {
             font-size: 100px;
             color: $pudding;
             text-shadow: $pudding_shadow;
+            @include tab {
+                top: 25px;
+                right: 70px;
+                font-size: 80px;
+            }
+            @include sp {
+                top: 10px;
+                right: 15px;
+                font-size: 40px;
+            }
         }
     }
 
     .sections {
+        margin: 0 auto;
         padding-top: 60px;
         width: 100%;
+        @include pc {
+            width: 90%;
+        }
         color: $pudding_shadow_color;
         h2 {
             margin-bottom: 20px;
             font-size: 30px;
             &::before {
                 content: "◆";
+            }
+            @include sp {
+                font-size: 25px;
             }
         }
         .section-content {
@@ -140,6 +211,9 @@ main {
         height: 30px;
         background-color: $puddingSource;
         border-radius: 16px 16px 0 0;
+        @include sp {
+            height: 20px;
+        }
     }
 
     .pudding-body {
@@ -156,11 +230,18 @@ main {
     #profile {
         .profile-list {
             padding: 30px 30px 0 30px;
+            @include sp {
+                padding: 15px 15px 0 15px;
+            }
             li {
                 margin-bottom: 30px;
                 font-size: 25px;
+                @include sp {
+                    font-size: 20px;
+                }
                 p {
                     line-height: 40px;
+                    overflow-wrap: break-word;
                     .list-title {
                         line-height: 55px;
                         font-weight: bold;
@@ -176,6 +257,10 @@ main {
                 padding: 30px;
                 font-size: 25px;
                 line-height: 55px;
+                @include sp {
+                    padding: 15px;
+                    font-size: 20px;
+                }
             }
         }
     }
@@ -189,11 +274,23 @@ main {
                 display: block;
                 width: 22%;
                 order: 1;
+                @include tab {
+                    width: 31%;
+                }
+                @include sp {
+                    width: 95%;
+                }
             }
             &::after {
                 content: "";
                 display: block;
                 width: 22%;
+                @include tab {
+                    width: 31%;
+                }
+                @include sp {
+                    width: 95%;
+                }
             }
             .flex-item {
                 margin-bottom: 40px;
@@ -205,6 +302,12 @@ main {
                     .pudding-body {
                         background-color: #fff6a9;
                     }
+                }
+                @include tab {
+                    width: 31%;
+                }
+                @include sp {
+                    width: 95%;
                 }
                 .pudding-top {
                     height: 24px;
@@ -227,9 +330,12 @@ main {
                         }
                     }
                     .work-title {
-                        width: 80%;
+                        width: 95%;
                         font-size: 24px;
                         text-align: center;
+                        @include sp {
+                            font-size: 20px;
+                        }
                     }
                 }
             }
@@ -241,7 +347,16 @@ main {
             p {
                 padding: 30px;
                 font-size: 25px;
-                line-height: 55px;
+                // line-height: 55px;
+                line-height: 30px;
+                @include sp {
+                    padding: 15px;
+                    font-size: 20px;
+                }
+                #phone {
+                    display: inline-block;
+                    margin-bottom: 35px;
+                }
             }
         }
     }
@@ -284,6 +399,10 @@ footer {
     height: 80vh;
     background-color: $pudding;
     z-index: 2000;
+    @include sp {
+        width: 90vw;
+        height: 70vh;
+    }
     #modalWrap {
         padding-top: 65px;
         position: relative;
@@ -301,6 +420,9 @@ footer {
             width: 100%;
             text-align: center;
             font-size: 32px;
+            @include sp {
+                font-size: 25px;
+            }
         }
         #workImg_Modal {
             margin: 0 auto;
@@ -318,6 +440,9 @@ footer {
             width: 80%;
             text-align: center;
             font-size: 25px;
+            @include sp {
+                font-size: 20px;
+            }
         }
         #pageUrl_Modal, #gitUrl_Modal {
             margin: 0 auto;
@@ -327,6 +452,9 @@ footer {
                 color: #1ea5ff;
                 text-align: center;
                 font-size: 25px;
+                @include sp {
+                    font-size: 22px;
+                }
                 &:hover {
                     // color: $pudding_hover;
                     font-weight: bold;

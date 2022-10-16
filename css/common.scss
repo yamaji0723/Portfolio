@@ -278,7 +278,7 @@ main {
                     width: 31%;
                 }
                 @include sp {
-                    width: 95%;
+                    width: 100%;
                 }
             }
             &::after {
@@ -289,7 +289,7 @@ main {
                     width: 31%;
                 }
                 @include sp {
-                    width: 95%;
+                    width: 100%;
                 }
             }
             .flex-item {
@@ -307,7 +307,7 @@ main {
                     width: 31%;
                 }
                 @include sp {
-                    width: 95%;
+                    width: 100%;
                 }
                 .pudding-top {
                     height: 24px;
